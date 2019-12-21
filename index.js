@@ -10,7 +10,7 @@ var spacing = 30;
   //resetbox
   var resetBoxWidth = 50;
   var resetBoxHeight = 30;
-  var resetBoxX = 80;
+  var resetBoxX = 180+resetBoxWidth/2;
   var resetBoxY = resetBoxHeight/2 + spacing;
 
   //calendarBoxes
