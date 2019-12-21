@@ -1,37 +1,54 @@
 
 //general
 var calendarBoxes = [];
-var boxRows = 5;
-var boxCols = 5;
-var userProgress = 0;
-
+var boxRows = 10;
+var boxCols = 6;
+let userStorage;
 //UI
-var spacing = 20;
+var spacing = 30;
 
   //resetbox
   var resetBoxWidth = 50;
   var resetBoxHeight = 30;
   var resetBoxX = 80;
-  var resetBoxY = 25;
+  var resetBoxY = resetBoxHeight/2 + spacing;
 
   //calendarBoxes
-  var boxSize = 50;
+  var boxSize = 80;
   var caldendarBoxesX;
   var calendarBoxesY;
+  var boxColorGreen;
 
 
 
 function setup(){
+  boxColorGreen = color(150,200,150)
+
+  if (localStorage.getItem("userStorage")==null) {
+    userStorage = {
+     userProgress: 0
+
+   };
+   saveUserStorage();
+  }
+
   createCanvas(windowWidth,1000);
 
-
-  resetBox = createSprite(resetBoxX,resetBoxY,resetBoxWidth,resetBoxHeight);
+  resetBox = createSprite(resetBoxX,resetBoxY,boxSize,resetBoxHeight);
   resetBox.mouseActive = true;
   resetBox.draw = function(){
-    rect(0,0,resetBoxWidth,resetBoxHeight);
+    rect(0,0,boxSize,resetBoxHeight);
     text("reset",-15,3)
   }
+
   spawnSprites();
+
+  getUserStorage();
+  for (var i = 0; i < calendarBoxes.length; i++) {
+    if(calendarBoxes[i].nr < userStorage.userProgress){
+      calendarBoxes[i].shapeColor = boxColorGreen;
+    }
+  }
 }//end setup
 
 function draw(){
@@ -43,7 +60,9 @@ function draw(){
   if(resetBox.mouseIsPressed){
     for (var i = 0; i < calendarBoxes.length; i++) {
       calendarBoxes[i].shapeColor = color(255);
-      userProgress = 0;
+      userStorage.userProgress = 0;
+      saveUserStorage();
+
     }
   }
 
@@ -77,11 +96,12 @@ function fillCalendar(){
   for (var i = 0; i < calendarBoxes.length; i++) {
     //print(calendarBoxes[i].nr);
     //print(calendarBoxes[i].mouseIsPressed);
-
-    if(calendarBoxes[i].nr==userProgress && calendarBoxes[i].mouseIsPressed){
+    getUserStorage();
+    if(calendarBoxes[i].nr==userStorage.userProgress && calendarBoxes[i].mouseIsPressed){
       print("yaay");
-      calendarBoxes[i].shapeColor= color(125,200,130);
-      userProgress++;
+      calendarBoxes[i].shapeColor= boxColorGreen;
+      userStorage.userProgress++;
+      saveUserStorage();
     }
   }
 }
