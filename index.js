@@ -16,12 +16,12 @@ var spacing = 30;
   var resetBoxHeight = 30;
   var resetBoxX = spacing+boxSize/2;
   var resetBoxY = resetBoxHeight/2;
-
-
+/*
 function preload(){
   soundFormats('wav', 'ogg');
   blip = loadSound('blip_sound.wav');
 }
+*/
 
 
 function setup(){
@@ -69,7 +69,7 @@ function draw(){
     for (var i = 0; i < calendarBoxes.length; i++) {
       calendarBoxes[i].draw = function(){boxDrawWhite();}
       userStorage.userProgress = 0;
-      blip.play();
+      //blip.play();
       saveUserStorage();
 
     }
@@ -83,7 +83,7 @@ function touchStarted() {
   if (getAudioContext().state !== 'running') {
     getAudioContext().resume();
 
-    blip.setVolume(1);
+    //blip.setVolume(1);
   }
 
 }
