@@ -36,7 +36,7 @@ function setup(){
   }
 
   var canvas = createCanvas(800,800);
-  canvas.parent("canvasDiv");
+  
   canvas.style('margin: auto');
 
 
