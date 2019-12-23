@@ -1,4 +1,7 @@
-
+body{
+  width: 800px;
+  margin:auto;
+}
 
 .header {
 font-family: franklin-gothic-urw, sans-serif;
@@ -26,6 +29,7 @@ margin-top: 10px;
 }
 
 
+
 .reset{
   font-family: franklin-gothic-urw, sans-serif;
 
@@ -48,4 +52,5 @@ margin-top: 10px;
 
 .body{
   height: 85%
+
 }

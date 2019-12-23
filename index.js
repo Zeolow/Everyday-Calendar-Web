@@ -37,9 +37,6 @@ function setup(){
 
   var canvas = createCanvas(800,800);
   
-  canvas.style('margin: auto');
-
-
   resetBox = createSprite(resetBoxX,resetBoxY,boxSize,resetBoxHeight);
   resetBox.mouseActive = true;
   resetBox.draw = function(){
@@ -120,8 +117,8 @@ function fillCalendar(){
     //print(calendarBoxes[i].mouseIsPressed);
     getUserStorage();
     if(calendarBoxes[i].nr==userStorage.userProgress && calendarBoxes[i].mouseIsPressed){
-      print("yaay");
       calendarBoxes[i].draw= function(){boxDrawFilled(boxColorGreen);}
+
       userStorage.userProgress++;
       saveUserStorage();
     }
