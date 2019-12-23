@@ -2,11 +2,50 @@
 
 .header {
 font-family: franklin-gothic-urw, sans-serif;
+height: 10%;
 font-weight: 500;
 font-style: normal;
 font-size: 60px;
-padding-left: 160px;
-padding-top:50px;
-color: #11111
 
+color: #11111;
+padding-left: 30px;
+margin-top: 10px;
+
+
+}
+
+.description{
+  font-family: franklin-gothic-urw, sans-serif;
+
+  font-weight: 300;
+
+  font-style: normal;
+  font-size: 17px;
+  padding-bottom: 0px;
+  padding-left: 30px;
+}
+
+
+.reset{
+  font-family: franklin-gothic-urw, sans-serif;
+
+  font-weight: 300;
+
+  font-style: normal;
+  font-size: 17px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 5px;
+}
+
+
+.parent{
+  margin: auto;
+  width: 800px;
+
+}
+
+
+.body{
+  height: 85%
 }

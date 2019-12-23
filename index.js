@@ -1,24 +1,27 @@
 
 //general
 var calendarBoxes = [];
-var boxRows = 10;
+var boxRows = 7;
 var boxCols = 6;
 let userStorage;
 //UI
 var spacing = 30;
-  //test
-  //resetbox
-  var resetBoxWidth = 50;
-  var resetBoxHeight = 30;
-  var resetBoxX = 180+resetBoxWidth/2;
-  var resetBoxY = resetBoxHeight/2 + spacing;
-
   //calendarBoxes
   var boxSize = 80;
   var caldendarBoxesX;
   var calendarBoxesY;
   var boxColorGreen;
 
+  //resetbox
+  var resetBoxHeight = 30;
+  var resetBoxX = spacing+boxSize/2;
+  var resetBoxY = resetBoxHeight/2;
+
+
+function preload(){
+  soundFormats('wav', 'ogg');
+  blip = loadSound('blip_sound.wav');
+}
 
 
 function setup(){
@@ -32,13 +35,18 @@ function setup(){
    saveUserStorage();
   }
 
-  createCanvas(windowWidth,1000);
+  var canvas = createCanvas(800,800);
+  canvas.parent("canvasDiv");
+  canvas.style('margin: auto');
+
 
   resetBox = createSprite(resetBoxX,resetBoxY,boxSize,resetBoxHeight);
   resetBox.mouseActive = true;
   resetBox.draw = function(){
+    fill(255);
+    stroke(0);
     rect(0,0,boxSize,resetBoxHeight);
-    text("reset",-15,3)
+
   }
 
   spawnSprites();
@@ -46,27 +54,39 @@ function setup(){
   getUserStorage();
   for (var i = 0; i < calendarBoxes.length; i++) {
     if(calendarBoxes[i].nr < userStorage.userProgress){
-      calendarBoxes[i].shapeColor = boxColorGreen;
+      calendarBoxes[i].draw = function(){boxDrawFilled(boxColorGreen);}
     }
   }
 }//end setup
 
 function draw(){
 
-  background(200);
+  background(255);
   drawSprites();
   fillCalendar();
 
   if(resetBox.mouseIsPressed){
     for (var i = 0; i < calendarBoxes.length; i++) {
-      calendarBoxes[i].shapeColor = color(255);
+      calendarBoxes[i].draw = function(){boxDrawWhite();}
       userStorage.userProgress = 0;
+      blip.play();
       saveUserStorage();
 
     }
   }
 
+
+
 }//end
+
+function touchStarted() {
+  if (getAudioContext().state !== 'running') {
+    getAudioContext().resume();
+
+    blip.setVolume(1);
+  }
+
+}
 
 function spawnSprites(){
 
@@ -81,9 +101,11 @@ function spawnSprites(){
       cBoxX = calendarBoxesX + spacing*j + boxSize*j;
       cBox = createSprite(cBoxX, cBoxY, boxSize, boxSize);
       cBox.setCollider("rectangle",0, 0, boxSize,boxSize);
-      cBox.shapeColor = color(255);
       cBox.mouseActive = true;
       cBox.nr = i*boxRows+j;
+      cBox.draw = function(){boxDrawWhite();}
+      fill(255);
+      text(cBox.nr, cBoxX, cBoxY);
       calendarBoxes.push(cBox);
 
     }
@@ -99,9 +121,23 @@ function fillCalendar(){
     getUserStorage();
     if(calendarBoxes[i].nr==userStorage.userProgress && calendarBoxes[i].mouseIsPressed){
       print("yaay");
-      calendarBoxes[i].shapeColor= boxColorGreen;
+      calendarBoxes[i].draw= function(){boxDrawFilled(boxColorGreen);}
       userStorage.userProgress++;
       saveUserStorage();
     }
   }
+}
+
+function boxDrawWhite(){
+  fill(255);
+  stroke(0);
+  rectMode(CENTER);
+  rect(0,0,boxSize, boxSize);
+}
+
+function boxDrawFilled(color){
+  fill(color);
+  stroke(0);
+  rectMode(CENTER);
+  rect(0,0,boxSize, boxSize);
 }

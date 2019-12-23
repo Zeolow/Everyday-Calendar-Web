@@ -1,24 +1,47 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-    <style> body {padding: 0; margin: 0;} </style>
-    <LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
-    <link rel="stylesheet" href="https://use.typekit.net/pxm4ssa.css">
+
+<body>
+  <script src="p5/p5.min.js"></script>
+  <script src="p5/addons/p5.dom.min.js"></script>
+  <script src="p5/addons/p5.sound.min.js"></script>
+  <script src="p5/addons/p5.play.js"></script>
+  <script src="index.js" charset="utf-8"></script>
+  <script src="user_storage.js" charset="utf-8"></script>
+
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <style> body {padding: 0; margin: 0;} </style>
+  <LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
+  <link rel="stylesheet" href="https://use.typekit.net/pxm4ssa.css">
 
 
+  <div class="parent">
     <div class="header">
       Routine Calendar
     </div>
-    <script src="p5/p5.min.js"></script>
-    <script src="p5/addons/p5.dom.min.js"></script>
-    <script src="p5/addons/p5.sound.min.js"></script>
-    <script src="p5/addons/p5.play.js"></script>
+    <div class="description">
+      Fill in a box if you have done what you should today!
 
-    <script src="index.js" charset="utf-8"></script>
-    <script src="user_storage.js" charset="utf-8"></script>
+    </div>
+    <div class="description">
+      Press reset if you have not. (ง°ل͜°)ง
+
+    </div>
+    <div class="reset">
+      _reset
+
+    </div>
+    <div class= "body" id="canvasDiv">
+  </div>
 
 
-  </head>
-  <body>
+
+
+
+
+
+
+  </div>
+
+</body>
